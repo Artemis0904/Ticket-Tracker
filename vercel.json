@@ -20,7 +20,7 @@
     }
   ],
   "env": {
-    "VITE_SUPABASE_URL": "@vite_supabase_url",
-    "VITE_SUPABASE_ANON_KEY": "@vite_supabase_anon_key"
+    "VITE_SUPABASE_URL": "https://rutokqmmosbthbnhiwam.supabase.co",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1dG9rcW1tb3NidGhibmhpd2FtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5OTg2OTQsImV4cCI6MjA3MDU3NDY5NH0.hVyLYIjI0s2IZ_mRCDLCmNVzf1OntiFF_qW5nsRTO3M"
   }
 }
