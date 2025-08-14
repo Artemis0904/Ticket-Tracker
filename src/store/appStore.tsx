@@ -356,6 +356,9 @@ export const AppStoreProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
       // Only update local state if database update was successful
       dispatch({ type: 'UPDATE_STATUS', payload: { id, status } });
+      
+      // Force refresh of material requests data
+      console.log('Status updated successfully, local state updated');
     } catch (error) {
       console.error('Error updating status:', error);
       // Don't update local state if database update failed

@@ -12,18 +12,25 @@ import { useMaterialRequests } from '@/hooks/useMaterialRequests';
 import MRFormDialog from '@/components/MRFormDialog';
 import MRCFormDialog from '@/components/MRCFormDialog';
 import EngineerShipmentViewer from '@/components/EngineerShipmentViewer';
+import { RefreshCw } from 'lucide-react';
 
 const EngineerDashboard = () => {
   const navigate = useNavigate();
   const { state } = useAppStore();
-  const { requests, isLoading } = useMaterialRequests();
+  const { requests, isLoading, refreshRequests } = useMaterialRequests();
   const username = (state.currentUser || localStorage.getItem('currentUser') || 'Engineer') as string;
   const [shipOpen, setShipOpen] = useState(false);
   const [selectedShipId, setSelectedShipId] = useState<string | null>(null);
 
+  // Show all requests for the engineer, regardless of status
   const myRequests = requests.filter(
     (r) => (r.requestedBy || '').toLowerCase() === username.toLowerCase()
   );
+  
+  // Debug logging to see what's happening
+  console.log('Username:', username);
+  console.log('All requests:', requests);
+  console.log('My requests:', myRequests);
   const myShipments = myRequests.filter((r) => r.status === 'in-transit' || r.status === 'delivered');
 
   const getStatusBadge = (status: string) => {
@@ -64,6 +71,13 @@ const EngineerDashboard = () => {
               <p className="text-muted-foreground">Track your material requests and shipments</p>
             </div>
             <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                onClick={() => refreshRequests()}
+                className="gap-2"
+              >
+                <RefreshCw className="h-4 w-4" /> Refresh
+              </Button>
               <MRFormDialog
                 trigger={
                   <Button className="gap-2">

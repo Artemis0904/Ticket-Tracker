@@ -76,12 +76,15 @@ export default function SMRequestViewer({ open, onOpenChange, request }: SMReque
     }
     
     try {
+      console.log('Updating request with transport details...');
       await updateRequest(request.id, {
         transportMode: mode,
         edt: edt ? edt.toISOString() : undefined,
         trackingNo: tracking.trim() || undefined,
         sentAt: new Date().toISOString(),
       });
+      
+      console.log('Updating status to in-transit...');
       await updateStatus(request.id, 'in-transit');
       
       // Send notification about items being sent

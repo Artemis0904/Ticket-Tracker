@@ -56,6 +56,7 @@ export function useMaterialRequests() {
           table: 'material_requests',
         },
         () => {
+          console.log('Database change detected, refreshing data...');
           // Invalidate and refetch when any change occurs
           queryClient.invalidateQueries({ queryKey: ['material-requests'] });
         }
